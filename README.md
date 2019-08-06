@@ -7,7 +7,7 @@ Install NuGet Package
 https://www.nuget.org/packages/gratisalapiclientlib
 
 ### Credentials
-It is needed to have an active account at Gratisal to utilize this Api.
+It is needed to have an active account at Gratisal to utilize this Api. The credentials below are only placeholders.
 
 Create a company to optain credentials at [TEST](https://gratisaltest.dk/signup/) or [LIVE](https://app.gratisal.dk/signup/)
 
