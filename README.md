@@ -37,11 +37,11 @@ var companyUser = companyUsers.FirstOrDefault(x => x.FirstName == "Bob");
 // Change firstname
 companyUser.FirstName = "James";
 
-// Update firstname i gratisal
+// Update firstname in Gratisal
 var companyUserUpdateResult = await gratisalClient.CompanyUsers_UpdateCompanyUserAsync(companyUser);
 ```
 #### Logout
 ```
-// Terminate a session
+// Terminate the session
 await gratisalClient.Close();
 ```
