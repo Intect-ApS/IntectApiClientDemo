@@ -9,7 +9,7 @@ https://www.nuget.org/packages/gratisalapiclientlib
 ### Credentials
 It is needed to have an active account at Gratisal to utilize this Api. The credentials below are only placeholders.
 
-Create a company/user to optain credentials at [TEST](https://gratisaltest.dk/signup/) or [LIVE](https://app.gratisal.dk/signup/)
+Create a company/user to optain credentials at [TEST_Sign_up](https://gratisaltest.dk/signup/) or [LIVE_Sign_up](https://app.gratisal.dk/signup/)
 
 Initialize the GratisalClient:
 ```
@@ -23,7 +23,7 @@ var credentials = new gratisalapiclientlib.Models.Credentials()
 var gratisalClient = new gratisalapiclientlib.GratisalClient(credentials/*,"https://api.gratisal.dk"*/);
 ```
 
-You can get a full list of Gratisal methods here [TEST](https://api.gratisaltest.dk/swagger/ui/index) or [LIVE](https://api.gratisal.dk/swagger/ui/index)
+To get a full list of the available GratisalApi methods, go to [TEST_GratisalDK.WebAPI](https://api.gratisaltest.dk/swagger/ui/index) or [LIVE_GratisalDK.WebAPI](https://api.gratisal.dk/swagger/ui/index)
 
 ### Example methods (More to be found in the code)
 #### Change companyuser first name
