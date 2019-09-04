@@ -2,6 +2,10 @@
 Code showcasing how to work with the Gratisal public REST API
 
 ## Usage
+
+<details><summary><strong>Simple</strong> (Using NuGet Package)</summary>
+<p>
+
 ### Prerequisite
 Install NuGet Package
 https://www.nuget.org/packages/gratisalapiclientlib
@@ -45,3 +49,8 @@ var companyUserUpdateResult = await gratisalClient.CompanyUsers_UpdateCompanyUse
 // Terminate the session
 await gratisalClient.Close();
 ```
+
+</p>
+</details>
+
+
