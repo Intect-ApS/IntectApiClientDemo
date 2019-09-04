@@ -3,6 +3,20 @@ Code showcasing how to work with the Gratisal public REST API
 
 ## Usage
 
+We provide a test environment which can be accessed here:
+
+<strong>Create company:</strong> https://gratisaltest.dk/signup<br/>
+<strong>Interface:</strong> https://gratisaltest.dk<br/>
+<strong>API:</strong> https://api.gratisaltest.dk<br/>
+
+This environment works an isolated “sandbox” where emails, payments and other data are not transferred to the intended receipients.
+The only exception is integrations to external systems – these are handled “without question”, meaning that if you set up an integration, you must make sure it does not connect to a production environment in the external system.
+
+All e-mails are dispatched to an internal test mailbox, from which we can retrieve them for you upon request if relevant. When signing up a new company, we recommend that you choose a password directly in the form, which will allow you to log in immediately without the need to receive an e-mail with a password.
+
+
+### Getting started
+
 <details><summary><strong>Simple</strong> (Using NuGet Package)</summary>
 <p>
 
@@ -13,7 +27,7 @@ https://www.nuget.org/packages/gratisalapiclientlib
 ### Credentials
 It is needed to have an active account at Gratisal to utilize this Api. The credentials below are only placeholders.
 
-Create a company/user to optain credentials at [TEST_Sign_up](https://gratisaltest.dk/signup/) or [LIVE_Sign_up](https://app.gratisal.dk/signup/)
+Create a company/user to optain credentials at [TEST_Sign_up](https://gratisaltest.dk/signup/)
 
 Initialize the GratisalClient:
 ```
@@ -27,7 +41,7 @@ var credentials = new gratisalapiclientlib.Models.Credentials()
 var gratisalClient = new gratisalapiclientlib.GratisalClient(credentials/*,"https://api.gratisal.dk"*/);
 ```
 
-To get a full list of the available GratisalApi methods, go to [TEST_GratisalDK.WebAPI](https://api.gratisaltest.dk/swagger/ui/index) or [LIVE_GratisalDK.WebAPI](https://api.gratisal.dk/swagger/ui/index)
+To get a full list of the available GratisalApi methods, go to [TEST_GratisalDK.WebAPI](https://api.gratisaltest.dk/swagger/ui/index)
 
 ### Example methods (More to be found in the code)
 #### Change companyuser first name
@@ -56,7 +70,7 @@ await gratisalClient.Close();
 <details><summary><strong>Advanced</strong> (Accessing the Open Gratisal Web Api directly)</summary>
 <p>
 
-Link to GratisalApi swagger documentation [TEST_GratisalDK.WebAPI](https://api.gratisaltest.dk/swagger/ui/index) and/or [LIVE_GratisalDK.WebAPI](https://api.gratisal.dk/swagger/ui/index)
+Link to GratisalApi swagger documentation [TEST_GratisalDK.WebAPI](https://api.gratisaltest.dk/swagger/ui/index)
 
 ### Technical details
 
