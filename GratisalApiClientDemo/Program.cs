@@ -49,7 +49,7 @@ namespace GratisalApiClientDemo
             // ***********************
             // *** EXAMPLE METHODS ***
             // ***********************
-
+            
             #region * Initialize data *
             "* Initialize data *".Log();
 
@@ -109,7 +109,7 @@ namespace GratisalApiClientDemo
                     TelFixed = "+345 1234 5678",
                     TelMobile = "+345 8765 4321",
                 },
-                EmploymentTemplateId = employmentTemplates.First(x => x.Name == "HourlyPaid").Id,
+                EmploymentTemplateId = employmentTemplates.First(x => x.Name == "Timelønnet").Id,
                 HireDate = DateTime.Now,
                 IdentityNumber = GenerateRandomIdentitynumber(Gender.Male), // CPR number
                 LanguageId = languages.First(x => x.Code == "DK").Id,
@@ -132,10 +132,13 @@ namespace GratisalApiClientDemo
 
             if (companyUser != null)
             {
+                // Try not to use the Update functions to update single or few fields, use patch instead
+                // This specific api method doesn't support patch
+                 
                 "Change middelname".Log();
                 companyUser.MiddleName = "Kirby";
 
-                "Update firstname i gratisal".Log();
+                "Update middelname in gratisal".Log();
                 var companyUserUpdateResult = await gratisalClient.CompanyUsers_UpdateCompanyUserAsync(companyUser);
             }
             else
@@ -170,6 +173,26 @@ namespace GratisalApiClientDemo
             var timeEntryRecordResponse = await gratisalClient.TimeEntry_CreateTimeEntryRecordAsync(timeEntryRecordRequest);
 
             "Done creating TimeEntryRecord\n".Log();
+
+            #endregion
+
+            #region * Patch just added timeregistration
+            "* Patch timeregistration".Log();
+
+            "Create TimeEntryRecord patch object".Log();
+            var timeEntryPatchRequest = new Gratisal.WebAPI.Client.TimeEntryRecord
+            {
+                Id = timeEntryRecordResponse.Id,
+                StartTime = "",
+                EndTime = "",
+                Units = new Random().Next(0,1000)/100M,
+                Description = "Patching rules"
+            };
+
+            "Patch TimeEntryRecord".Log();
+            var timeEntryPatchResponse = await gratisalClient.TimeEntry_PatchTimeEntryRecordAsync(timeEntryPatchRequest);
+
+            "Done patching TimeEntryRecord\n".Log();
 
             #endregion
 
