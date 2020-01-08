@@ -72,10 +72,6 @@ await gratisalClient.Close();
 
 Link to GratisalApi swagger documentation [TEST_GratisalDK.WebAPI](https://api.gratisaltest.dk/swagger/ui/index)
 
-### Technical details
-
-Not all of the following is strictly required reading. If you feel like “jumping right in” and don’t mind making some educated guesses about how things work, the section about Authentication is really all you need to know to get started.
-
 <details><summary><strong>HTTP verbs</strong></summary>
 <p>
     
@@ -128,6 +124,12 @@ Please treat the token securely and refrain from e.g. storing it in a text file,
 </p>
 </details>
 
+</p>
+</details>
+
+### Technical details and API usage guidelines
+
+Not all of the following is strictly required reading. If you feel like “jumping right in” and don’t mind making some educated guesses about how things work, the section about Authentication is really all you need to know to get started.
 
 <details><summary><strong>Company and language context</strong> (session handling)</summary>
 <p>
@@ -173,9 +175,6 @@ Other conventions are used in the API with an aim for consistency and predictabi
 However, requests that take the form “get X by Y” can sometimes use the singular form for Y. For example, a request to ```api/books/owner/{ownerId}``` would yield the books belonging to the owner with the specified ID (i.e. “Get books by owner”). An alternative route for the same request would be ```api/owners/{ownerId}/books```, but this implies the method is owner-centric where in this case it is clearly book-centric, and should thus be grouped with other book-related methods.
 
 * The name arguments to the routes that start with ```api/staticdata```, e.g. ```api/staticdata/PensionProvider```, break no less than two conventions that are used in the rest of the API. Firstly they must be submitted in PascalCase and not lower-case, and secondly you must use the singular and not the plural form. This is due to technical details in the back-end implementation of these entities.
-
-</p>
-</details>
 
 </p>
 </details>
