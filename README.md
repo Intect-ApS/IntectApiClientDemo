@@ -70,7 +70,11 @@ await gratisalClient.Close();
 <details><summary><strong>Advanced</strong> (Accessing the Open Gratisal Web Api directly)</summary>
 <p>
 
-Link to GratisalApi swagger documentation [TEST_GratisalDK.WebAPI](https://api.gratisaltest.dk/swagger/ui/index)
+Our API documentation can be accessed through Swagger by navigating to the root URL of the API - i.e. https://api.gratisaltest.dk or https://api.gratisal.dk.
+
+You can also fetch the documentation in a more raw format by adding /Documentation.xml to the URL - i.e. https://api.gratisaltest.dk/Documentation.xml for the test environment. 
+This file can be used in conjunction with a relevant framework (which one depends on the language you are using) to auto-generate your classes and methods based on the documentation.
+This allows you to save a lot of the heavy lifting, and focus on implementing your actual business logic. Our own NuGet package is based on the same idea.
 
 <details><summary><strong>HTTP verbs</strong></summary>
 <p>
