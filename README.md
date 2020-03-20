@@ -77,7 +77,8 @@ Link to GratisalApi swagger documentation [TEST_GratisalDK.WebAPI](https://api.g
     
 In a slightly modified version of basic REST principles, we utilize the HTTP verbs as follows:
 * <strong>GET:</strong> Used for any method that do not require you to post a request body and which does not in any way affect existing data.
-* <strong>PUT:</strong> Used for updating an existing entity.
+* <strong>PATCH:</strong> Used for updating an existing entity, specifying only the relevant properties you want to change. This is the recommended approach for external integrations, although our own client uses PUT.
+* <strong>PUT:</strong> Used for updating an existing entity, submitting the full object with all properties. Note that using this verb performs faster than PATCH, but it requires you to continually update your solution as we add new properties. For this reason, PATCH is strongly recommended where supported.
 * <strong>DELETE:</strong> Used for deleting or deactivating an existing entity or mapping between entities. 
 * <strong>POST:</strong> Used for creating (or in some cases, activating) new entities or mappings between entities.<br/>However, it is also used for methods that do not modify existing data, but requires you to submit a body along with the request. This is because many clients are not able to submit a body along with a GET request.
 
