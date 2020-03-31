@@ -22,7 +22,9 @@ All e-mails are dispatched to an internal test mailbox, from which we can retrie
 
 ### Prerequisite
 Install NuGet Package
+
 Use https://www.nuget.org/packages/GratisalApiClientLib_vNext/ for testing
+
 Use https://www.nuget.org/packages/gratisalapiclientlib for the live environment
 
 ### Credentials
