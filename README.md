@@ -22,7 +22,8 @@ All e-mails are dispatched to an internal test mailbox, from which we can retrie
 
 ### Prerequisite
 Install NuGet Package
-https://www.nuget.org/packages/gratisalapiclientlib
+Use https://www.nuget.org/packages/GratisalApiClientLib_vNext/ for testing
+Use https://www.nuget.org/packages/gratisalapiclientlib for the live environment
 
 ### Credentials
 It is needed to have an active account at Gratisal to utilize this Api. The credentials below are only placeholders.
