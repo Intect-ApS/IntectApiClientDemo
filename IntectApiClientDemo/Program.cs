@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using static GratisalApiClientDemo.Helpers;
+using static IntectApiClientDemo.Helpers;
 
-namespace GratisalApiClientDemo
+namespace IntectApiClientDemo
 {
     class Program
     {
@@ -21,21 +21,21 @@ namespace GratisalApiClientDemo
 
         private static async Task DemoCode()
         {
-            gratisalapiclientlib.GratisalClient gratisalClient;
+            intectapiclientlib.IntectClient intectClient;
 
             "* Authorizing credentials *".Log();
             try
             {
-                // Credentials. You can create a user to optain credentials at TEST: https://gratisaltest.dk/signup/ or LIVE: https://app.gratisal.dk/signup/
-                var credentials = new gratisalapiclientlib.Models.Credentials()
+                // Credentials. You can create a user to optain credentials at TEST: https://testintect.app/signup/ or LIVE: https://app.intect.app/signup/
+                var credentials = new intectapiclientlib.Models.Credentials()
                 {
-                    Username = "MyUsername",
-                    Password = "MySecretPassw0rd",
+                    Username = "rja@ecitservices.dk",
+                    Password = "P4ssw0rd",
                 };
 
                 // Initialize session
-                // The GratisalClient defaults to the testversion of the GratisalApi. Set baseUrl to https://api.gratisal.dk to reach live version
-                gratisalClient = new gratisalapiclientlib.GratisalClient(credentials/*,"https://api.gratisal.dk"*/);
+                // The IntectClient defaults to the testversion of the IntectApi. Set baseUrl to https://api.intect.app to reach live version
+                intectClient = new intectapiclientlib.IntectClient(credentials/*,"https://api.intect.app"*/);
             }
             catch (Exception ex)
             {
@@ -44,7 +44,7 @@ namespace GratisalApiClientDemo
 
             "Done authorizing credentials\n".Log();
 
-            // You can get a full list of Gratisal methods at TEST: https://api.gratisaltest.dk/swagger/ui/index or LIVE: https://api.gratisal.dk/swagger/ui/index
+            // You can get a full list of Intect methods at TEST: https://api.testintect.app/swagger/ui/index or LIVE: https://api.intect.dk/swagger/ui/index
 
             // ***********************
             // *** EXAMPLE METHODS ***
@@ -54,31 +54,31 @@ namespace GratisalApiClientDemo
             "* Initialize data *".Log();
 
             "Get available companies".Log();
-            var companyInfo = await gratisalClient.Users_GetCompaniesAsync();
+            var companyInfo = await intectClient.Users_GetCompaniesAsync();
 
             "Get available countries".Log();
-            var countries = await gratisalClient.StaticData_GetCountriesAsync();
+            var countries = await intectClient.StaticData_GetCountriesAsync();
 
             "Get available roles".Log();
-            var roles = await gratisalClient.StaticData_GetRolesAsync();
+            var roles = await intectClient.StaticData_GetRolesAsync();
 
             "Get available employment templates".Log();
-            var employmentTemplates = await gratisalClient.EmploymentTemplates_GetEmploymentTemplatesAsync();
+            var employmentTemplates = await intectClient.EmploymentTemplates_GetEmploymentTemplatesAsync();
 
             "Get available languages".Log();
-            var languages = await gratisalClient.Miscellaneous_GetLanguagesAsync();
+            var languages = await intectClient.Miscellaneous_GetLanguagesAsync();
 
             "Get available taxcard types".Log();
-            var taxcardTypes = await gratisalClient.StaticData_GetTaxCardTypesAsync();
+            var taxcardTypes = await intectClient.StaticData_GetTaxCardTypesAsync();
 
             "Get available timeentrytypes".Log();
-            var timeEntryTypes = await gratisalClient.TimeEntryTypes_GetTimeEntryTypeViewsAsync();
+            var timeEntryTypes = await intectClient.TimeEntryTypes_GetTimeEntryTypeViewsAsync();
 
             "Get available unittypes".Log();
-            var unitTypes = await gratisalClient.StaticData_GetUnitTypesAsync();
+            var unitTypes = await intectClient.StaticData_GetUnitTypesAsync();
 
             "Get available statuses".Log();
-            var statuses = await gratisalClient.StaticData_GetTimeEntryStatusesAsync();
+            var statuses = await intectClient.StaticData_GetTimeEntryStatusesAsync();
 
             "Done initializing data\n".Log();
 
@@ -88,11 +88,11 @@ namespace GratisalApiClientDemo
             "* Create companyuser *".Log();
 
             "Create AddUserToCompanyRequest object".Log();
-            var addUserToCompanyRequest = new Gratisal.WebAPI.Client.AddUserToCompanyRequest()
+            var addUserToCompanyRequest = new Intect.WebAPI.Client.AddUserToCompanyRequest()
             {
-                Details = new Gratisal.WebAPI.Client.CompanyUser()
+                Details = new Intect.WebAPI.Client.CompanyUser()
                 {
-                    Address = new Gratisal.WebAPI.Client.Address()
+                    Address = new Intect.WebAPI.Client.Address()
                     {
                         CountryId = countries.First(x => x.Key == "DK").Id,
                         Line1 = "MyStreet 2",
@@ -118,7 +118,7 @@ namespace GratisalApiClientDemo
             };
 
             "Create Company User".Log();
-            var addUserToCompanyResponse = await gratisalClient.CompanyUsers_AddUserToCompanyAsync(addUserToCompanyRequest);
+            var addUserToCompanyResponse = await intectClient.CompanyUsers_AddUserToCompanyAsync(addUserToCompanyRequest);
 
             "Done creating CompanyUser\n".Log();
 
@@ -138,8 +138,8 @@ namespace GratisalApiClientDemo
                 "Change middelname".Log();
                 companyUser.MiddleName = "Kirby";
 
-                "Update middelname in gratisal".Log();
-                var companyUserUpdateResult = await gratisalClient.CompanyUsers_UpdateCompanyUserAsync(companyUser);
+                "Update middelname in intect".Log();
+                var companyUserUpdateResult = await intectClient.CompanyUsers_UpdateCompanyUserAsync(companyUser);
             }
             else
             {
@@ -157,7 +157,7 @@ namespace GratisalApiClientDemo
             companyUser = addUserToCompanyResponse.CompanyUser;
 
             "Create TimeEntryRecord object".Log();
-            var timeEntryRecordRequest = new Gratisal.WebAPI.Client.TimeEntryRecord()
+            var timeEntryRecordRequest = new Intect.WebAPI.Client.TimeEntryRecord()
             {
                 Description = "\"Business\" spoils",
                 StartTime = "08:00",
@@ -170,7 +170,7 @@ namespace GratisalApiClientDemo
             };
 
             "Create TimeEntryRecord".Log();
-            var timeEntryRecordResponse = await gratisalClient.TimeEntry_CreateTimeEntryRecordAsync(timeEntryRecordRequest);
+            var timeEntryRecordResponse = await intectClient.TimeEntry_CreateTimeEntryRecordAsync(timeEntryRecordRequest);
 
             "Done creating TimeEntryRecord\n".Log();
 
@@ -180,7 +180,7 @@ namespace GratisalApiClientDemo
             "* Patch timeregistration".Log();
 
             "Create TimeEntryRecord patch object".Log();
-            var timeEntryPatchRequest = new Gratisal.WebAPI.Client.TimeEntryRecord
+            var timeEntryPatchRequest = new Intect.WebAPI.Client.TimeEntryRecord
             {
                 Id = timeEntryRecordResponse.Id,
                 StartTime = "",
@@ -190,7 +190,7 @@ namespace GratisalApiClientDemo
             };
 
             "Patch TimeEntryRecord".Log();
-            var timeEntryPatchResponse = await gratisalClient.TimeEntry_PatchTimeEntryRecordAsync(timeEntryPatchRequest);
+            var timeEntryPatchResponse = await intectClient.TimeEntry_PatchTimeEntryRecordAsync(timeEntryPatchRequest);
 
             "Done patching TimeEntryRecord\n".Log();
 
@@ -200,7 +200,7 @@ namespace GratisalApiClientDemo
             "* Delete companyusers named Jack *".Log();
 
             "Get all company users".Log();
-            var companyUsers = await gratisalClient.CompanyUsers_GetAllCompanyUsersAsync();
+            var companyUsers = await intectClient.CompanyUsers_GetAllCompanyUsersAsync();
 
             "Find all users called Jack".Log();
             var selectedCompanyUsers = companyUsers.Where(x => x.FirstName == "Jack");
@@ -209,7 +209,7 @@ namespace GratisalApiClientDemo
             foreach (var selectedCompanyUser in selectedCompanyUsers)
             {
                 $"Deleting ({selectedCompanyUser.UserIdentityNumber}) {selectedCompanyUser.FirstName} {selectedCompanyUser.MiddleName} {selectedCompanyUser.LastName} from CompanyUsers".Log();
-                await gratisalClient.CompanyUsers_DeleteCompanyUserAsync(selectedCompanyUser.Id ?? 0);
+                await intectClient.CompanyUsers_DeleteCompanyUserAsync(selectedCompanyUser.Id ?? 0);
             }
 
             "Done deleting companyusers named Jack\n".Log();
@@ -217,7 +217,7 @@ namespace GratisalApiClientDemo
             #endregion
 
             "Terminate the session".Log();
-            await gratisalClient.Close();
+            await intectClient.Close();
         }
     }
 }

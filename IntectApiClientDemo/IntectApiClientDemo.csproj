@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="GratisalApiClientLib" Version="1.0.2" />
+    <PackageReference Include="IntectApiClientLib_vNext" Version="5.0.0" />
   </ItemGroup>
 
 </Project>
