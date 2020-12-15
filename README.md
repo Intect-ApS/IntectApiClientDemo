@@ -1,13 +1,13 @@
-# GratisalApiClientDemo
-Code showcasing how to work with the Gratisal public REST API
+# IntectApiClientDemo
+Code showcasing how to work with the Intect public REST API
 
 ## Usage
 
 We provide a test environment which can be accessed here:
 
-<strong>Create company:</strong> https://gratisaltest.dk/signup<br/>
-<strong>Interface:</strong> https://gratisaltest.dk<br/>
-<strong>API:</strong> https://api.gratisaltest.dk<br/>
+<strong>Create company:</strong> https://testintect.app/signup/<br/>
+<strong>Interface:</strong> https://testintect.app<br/>
+<strong>API:</strong> https://api.testintect.app<br/>
 
 This environment works an isolated “sandbox” where emails, payments and other data are not transferred to the intended receipients.
 The only exception is integrations to external systems – these are handled “without question”, meaning that if you set up an integration, you must make sure it does not connect to a production environment in the external system.
@@ -23,34 +23,34 @@ All e-mails are dispatched to an internal test mailbox, from which we can retrie
 ### Prerequisite
 Install NuGet Package
 
-Use https://www.nuget.org/packages/GratisalApiClientLib_vNext/ for testing
+Use https://www.nuget.org/packages/IntectApiClientLib_vNext/ for testing
 
-Use https://www.nuget.org/packages/gratisalapiclientlib for the live environment
+Use https://www.nuget.org/packages/IntectApiClientLib for the live environment
 
 ### Credentials
-It is needed to have an active account at Gratisal to utilize this Api. The credentials below are only placeholders.
+It is needed to have an active account at Intect to utilize this Api. The credentials below are only placeholders.
 
-Create a company/user to optain credentials at [TEST_Sign_up](https://gratisaltest.dk/signup/)
+Create a company/user to optain credentials at [TEST_Sign_up](https://testintect.app/signup/)
 
-Initialize the GratisalClient:
+Initialize the IntectClient:
 ```
-var credentials = new gratisalapiclientlib.Models.Credentials()
+var credentials = new intectapiclientlib.Models.Credentials()
 {
     Username = "MyUsername",
     Password = "MySecretPassw0rd",            
 };
 
-// The GratisalClient defaults to the testversion of the GratisalApi. Set baseUrl to https://api.gratisal.dk to reach live version
-var gratisalClient = new gratisalapiclientlib.GratisalClient(credentials/*,"https://api.gratisal.dk"*/);
+// The IntectClient defaults to the testversion of the IntectApi. Set baseUrl to https://api.intect.app to reach live version
+var intectClient = new intectapiclientlib.IntectClient(credentials/*,"https://api.intect.app"*/);
 ```
 
-To get a full list of the available GratisalApi methods, go to [TEST_GratisalDK.WebAPI](https://api.gratisaltest.dk/swagger/ui/index)
+To get a full list of the available IntectApi methods, go to [TEST_IntectDK.WebAPI](https://api.testintect.app/swagger/ui/index)
 
 ### Example methods (More to be found in the code)
 #### Change companyuser first name
 ```
 // Get list of Company users
-var companyUsers = await gratisalClient.CompanyUsers_GetAllCompanyUsersAsync();
+var companyUsers = await intectClient.CompanyUsers_GetAllCompanyUsersAsync();
 
 // Find user with firstname 'Bob'
 var companyUser = companyUsers.FirstOrDefault(x => x.FirstName == "Bob");
@@ -58,24 +58,24 @@ var companyUser = companyUsers.FirstOrDefault(x => x.FirstName == "Bob");
 // Change firstname
 companyUser.FirstName = "James";
 
-// Update firstname in Gratisal
-var companyUserUpdateResult = await gratisalClient.CompanyUsers_UpdateCompanyUserAsync(companyUser);
+// Update firstname in Intect
+var companyUserUpdateResult = await intectClient.CompanyUsers_UpdateCompanyUserAsync(companyUser);
 ```
 #### Logout
 ```
 // Terminate the session
-await gratisalClient.Close();
+await intectClient.Close();
 ```
 
 </p>
 </details>
 
-<details><summary><strong>Advanced</strong> (Accessing the Open Gratisal Web Api directly)</summary>
+<details><summary><strong>Advanced</strong> (Accessing the Open Intect Web Api directly)</summary>
 <p>
 
-Our API documentation can be accessed through Swagger by navigating to the root URL of the API - i.e. https://api.gratisaltest.dk or https://api.gratisal.dk.
+Our API documentation can be accessed through Swagger by navigating to the root URL of the API - i.e. https://api.testintect.app or https://api.intect.app.
 
-You can also fetch the documentation in a more raw format by adding /Documentation.xml to the URL - i.e. https://api.gratisaltest.dk/Documentation.xml for the test environment. 
+You can also fetch the documentation in a more raw format by adding /Documentation.xml to the URL - i.e. https://api.testintect.app/swagger/docs/v1/ for the test environment. 
 This file can be used in conjunction with a relevant framework (which one depends on the language you are using) to auto-generate your classes and methods based on the documentation.
 This allows you to save a lot of the heavy lifting, and focus on implementing your actual business logic. Our own NuGet package is based on the same idea.
 
@@ -119,9 +119,9 @@ To authenticate against the API, you submit a POST request to api/auth/login sub
 
 ```Authorization: Basic [username:password as Base64]```
 
-So if the username is “Gratisal” and the password is “Payroll”, the header would be:
+So if the username is “Intect” and the password is “Payroll”, the header would be:
 
-```Authorization: Basic R3JhdGlzYWw6UGF5cm9sbA==```
+```Authorization: Basic SW50ZWN0OlBheXJvbGw=```
 
 (Note that we are not actually using the old-fashioned technology known as “Basic Authentication”. The authentication logic is custom-made and designed to be both modern and secure.)<br/>For username, it is possible to use either e-mail or CPR number, just like in the client application.<br/>If you submit valid credentials, the API will return a token which must be stored locally used in all subsequent requests to the API for that session. The token must be submitted in an Authorization header as such:
 
@@ -151,9 +151,9 @@ The authentication token mentioned above refers to a server-side session which c
 <details><summary><strong>Fundamental data structure</strong></summary>
 <p>
 
-Here is a brief explanation of the data structure employed by Gratisal:
+Here is a brief explanation of the data structure employed by Intect:
 * A <strong>User</strong> is a global entity corresponding to one physical person. They are uniquely identified by their <strong>IdentityNumber</strong>, i.e. the Danish CPR number.
-* A <strong>Company</strong> is a company in the Gratisal database. Since one physical person can access multiple companies, we need the concept of a 
+* A <strong>Company</strong> is a company in the Intect database. Since one physical person can access multiple companies, we need the concept of a 
 * <strong>CompanyUser</strong>, which is the “mapping” of a User to a specific company. This, rather than User, is what you should normally consider your “user” object, unless you are developing solutions that span multiple companies.
 * A <strong>UserEmployment</strong> is a work contract meaning that a CompanyUser is actually employed in the company. This is not necessarily the case, as administrators are often not technically employees.
 * <strong>Note:</strong> Since it’s also possible for one person to have multiple contracts within the same company, one CompanyUser can have multiple UserEmployments.<br/>Put a bit simply, the CompanyUser is what you see in the General tab in the client application, and the UserEmployment is what you see in the Employment tab.
