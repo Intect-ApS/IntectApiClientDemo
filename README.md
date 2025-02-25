@@ -75,7 +75,7 @@ await intectClient.Close();
 
 Our API documentation can be accessed through Swagger by navigating to the root URL of the API - i.e. https://api.testintect.app or https://api.intect.app.
 
-You can also fetch the documentation in a more raw format by adding /Documentation.xml to the URL - i.e. https://api.testintect.app/swagger/docs/v1/ for the test environment. 
+You can also fetch the documentation in a more raw format by adding /Documentation.xml to the URL - i.e. https://api.testintect.app/swagger for the test environment. 
 This file can be used in conjunction with a relevant framework (which one depends on the language you are using) to auto-generate your classes and methods based on the documentation.
 This allows you to save a lot of the heavy lifting, and focus on implementing your actual business logic. Our own NuGet package is based on the same idea.
 
